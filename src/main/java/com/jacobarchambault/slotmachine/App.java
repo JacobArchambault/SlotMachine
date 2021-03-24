@@ -110,21 +110,32 @@ public class App extends Application {
 
 	@Override
 	public void start(final Stage primaryStage) {
-		primaryStage.setScene(new Scene(new MainVBox(10, new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
-				new CenteredHBox(10, new Label("Amount Inserted: $"), insertedTextField),
-				new CenteredHBox(10, new Label("Amount Won This Spin: $"), wonThisSpinOutputLabel),
-				new CenteredHBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel), new EventButton("Spin", e -> {
-					// Get the amount bet.
-					getAmountBet();
-					// Determine if the bet was valid.
-					if (isValidBet) {
-						// Display the slots.
-						displaySlots();
-						// Determine the winnings.
-						determineWinnings();
-					}
-				}),
-				displayInfoLabel)));
+		primaryStage
+				.setScene(
+						new Scene(
+								new MainVBox(
+										10,
+										new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
+										new CenteredHBox(10, new Label("Amount Inserted: $"), insertedTextField),
+										new CenteredHBox(
+												10,
+												new Label("Amount Won This Spin: $"),
+												wonThisSpinOutputLabel),
+										new CenteredHBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel),
+										new EventButton(
+												"Spin",
+												e -> {
+													// Get the amount bet.
+													getAmountBet();
+													// Determine if the bet was valid.
+													if (isValidBet) {
+														// Display the slots.
+														displaySlots();
+														// Determine the winnings.
+														determineWinnings();
+													}
+												}),
+										displayInfoLabel)));
 		primaryStage.show();
 	}
 }
