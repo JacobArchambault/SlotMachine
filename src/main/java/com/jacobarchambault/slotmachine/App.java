@@ -94,13 +94,10 @@ public class App extends Application {
 	// The getAmountBet method converts the text to
 	// a double and stores it in the amountBet field.
 	private void getAmountBet() {
-		// Create a String object to hold the input
-		// from the TextField.
-		final var strAmountBet = insertedTextField.getText();
 		// Convert the String to a double and store it
 		// in the amountBet field.
 		try {
-			amountBet = Double.parseDouble(strAmountBet);
+			amountBet = Double.parseDouble(insertedTextField.getText());
 			// Set the bet status to true.
 			isValidBet = true;
 		} catch (NullPointerException | NumberFormatException ex) {
