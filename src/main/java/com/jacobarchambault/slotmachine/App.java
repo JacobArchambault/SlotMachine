@@ -19,13 +19,13 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-	private final int COLS = 3;
+	private static final int COLS = 3;
 	// Number of columns
-	private final int SIZE = 10;
+	private static final int SIZE = 10;
 	// Number of Image objects
-	private final double ZERO = 0.0; // Zero matches multiplier
-	private final double DOUBLE = 2.0; // Two matches multiplier
-	private final double TRIPLE = 3.0; // Three matches multiplier
+	private static final double ZERO = 0.0; // Zero matches multiplier
+	private static final double DOUBLE = 2.0; // Two matches multiplier
+	private static final double TRIPLE = 3.0; // Three matches multiplier
 
 	// Arrays
 	private int[] slotMemory;
