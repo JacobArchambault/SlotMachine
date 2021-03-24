@@ -53,7 +53,7 @@ public class App extends Application {
 	// The determineWinnings method determines the winnings.
 	private void determineWinnings() {
 		// Determine the winnings.
-		var amountWon;
+		var amountWon = 0D;
 		if (slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2]) {// If three of the images match, the user
 																				// has won
 																				// three times the amount entered.
