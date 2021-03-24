@@ -159,10 +159,7 @@ public class App extends Application {
 				displayInfoLabel);
 		mainVBox.setAlignment(Pos.CENTER);
 		mainVBox.setPadding(new Insets(10));
-		// Add the main VBox to a scene.
-		final var scene = new Scene(mainVBox);
-		// Set the scene to the stage aand display it.
-		primaryStage.setScene(scene);
+		primaryStage.setScene(new Scene(mainVBox));
 		primaryStage.show();
 	}
 }
