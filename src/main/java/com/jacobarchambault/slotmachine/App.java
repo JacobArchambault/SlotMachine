@@ -124,8 +124,7 @@ public class App extends Application {
 		final var slotImagesHBox = new HBox(10, slotImages[0], slotImages[1], slotImages[2]);
 
 		// Create the controls for the amount inserted.
-		final var insertedPrompt = new Label("Amount Inserted: $");
-		final var insertedHBox = new HBox(10, insertedPrompt, insertedTextField);
+		final var insertedHBox = new HBox(10, new Label("Amount Inserted: $"), insertedTextField);
 		insertedHBox.setAlignment(Pos.CENTER);
 
 		// Create the output labels.
