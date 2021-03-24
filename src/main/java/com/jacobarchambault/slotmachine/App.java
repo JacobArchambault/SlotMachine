@@ -3,8 +3,6 @@ package com.jacobarchambault.slotmachine;
 import java.util.Random;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -119,18 +116,7 @@ public class App extends Application {
 		for (var i = 0; i < 3; i++) {
 			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
 		}
-
-		// Put the slot images in an HBox.
-		// Create the controls for the amount inserted.
-		final var insertedHBox = new HBox(10, new Label("Amount Inserted: $"), insertedTextField);
-		insertedHBox.setAlignment(Pos.CENTER);
-
 		// Create the output labels.
-		final var wonThisSpinHBox = new HBox(10, new Label("Amount Won This Spin: $"), wonThisSpinOutputLabel);
-		wonThisSpinHBox.setAlignment(Pos.CENTER);
-
-		final var totalWonHBox = new HBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel);
-		totalWonHBox.setAlignment(Pos.CENTER);
 
 		// Create the Spin button.
 		final var spinButton = new Button("Spin");
@@ -151,7 +137,10 @@ public class App extends Application {
 		// Create a Label for instructions and game results.
 		// Put everything into a VBox
 		primaryStage.setScene(new Scene(new MainVBox(10, new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
-				insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton, displayInfoLabel)));
+				new CenteredHBox(10, new Label("Amount Inserted: $"), insertedTextField),
+				new CenteredHBox(10, new Label("Amount Won This Spin: $"), wonThisSpinOutputLabel),
+				new CenteredHBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel), spinButton,
+				displayInfoLabel)));
 		primaryStage.show();
 	}
 }
