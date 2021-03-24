@@ -150,11 +150,8 @@ public class App extends Application {
 
 		// Create a Label for instructions and game results.
 		// Put everything into a VBox
-		final var mainVBox = new VBox(10, new HBox(10, slotImages[0], slotImages[1], slotImages[2]), insertedHBox,
-				wonThisSpinHBox, totalWonHBox, spinButton, displayInfoLabel);
-		mainVBox.setAlignment(Pos.CENTER);
-		mainVBox.setPadding(new Insets(10));
-		primaryStage.setScene(new Scene(mainVBox));
+		primaryStage.setScene(new Scene(new MainVBox(10, new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
+				insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton, displayInfoLabel)));
 		primaryStage.show();
 	}
 }
