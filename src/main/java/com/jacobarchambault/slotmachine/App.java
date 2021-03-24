@@ -22,7 +22,7 @@ public class App extends Application {
 
 	private double amountBet = 0;
 	// To hold the Image objects
-	private final ImageView blankImage = new ImageView(new Image("file:BlankFruit.png"));
+	private final Image blankImage = new Image("file:BlankFruit.png");
 	Label displayInfoLabel = new Label("Insert an amount to play.");
 
 	// To hold the slot values
@@ -36,9 +36,10 @@ public class App extends Application {
 	private boolean isValidBet = false;
 	// To hold the status of a bet
 
-	private final ImageView[] slotImages = new ImageView[] { blankImage, blankImage, blankImage }; // To hold the
-																									// ImageView
-																									// components
+	private final ImageView[] slotImages = new ImageView[] { new ImageView(blankImage), new ImageView(blankImage),
+			new ImageView(blankImage) }; // To hold the
+	// ImageView
+	// components
 	// Arrays
 	private final int[] slotMemory = new int[3];
 
@@ -112,12 +113,6 @@ public class App extends Application {
 
 	@Override
 	public void start(final Stage primaryStage) {
-		// Initialize the slotImages array with blank images.
-		for (var i = 0; i < 3; i++) {
-			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
-		}
-		// Create the output labels.
-
 		// Create the Spin button.
 		final var spinButton = new Button("Spin");
 
