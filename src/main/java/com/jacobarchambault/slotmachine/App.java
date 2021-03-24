@@ -22,7 +22,6 @@ public class App extends Application {
 
 	private double amountBet = 0;
 	// To hold the Image objects
-	private final Image blankImage = new Image("file:BlankFruit.png");
 	Label displayInfoLabel = new Label("Insert an amount to play.");
 
 	// To hold the slot values
@@ -36,8 +35,8 @@ public class App extends Application {
 	private boolean isValidBet = false;
 	// To hold the status of a bet
 
-	private final ImageView[] slotImages = new ImageView[] { new ImageView(blankImage), new ImageView(blankImage),
-			new ImageView(blankImage) }; // To hold the
+	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
+			new ImageView(images[2]) }; // To hold the
 	// ImageView
 	// components
 	// Arrays
