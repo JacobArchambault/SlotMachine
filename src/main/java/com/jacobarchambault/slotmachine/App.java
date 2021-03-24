@@ -32,8 +32,6 @@ public class App extends Application {
 	// Controls
 	TextField insertedTextField = new TextField();
 	// To hold the total winnings
-	private boolean isValidBet = false;
-	// To hold the status of a bet
 
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
 			new ImageView(images[2]) }; // To hold the
@@ -92,18 +90,18 @@ public class App extends Application {
 
 	// The getAmountBet method converts the text to
 	// a double and stores it in the amountBet field.
-	private void getAmountBet() {
+	private boolean getAmountBet() {
 		// Convert the String to a double and store it
 		// in the amountBet field.
 		try {
 			amountBet = Double.parseDouble(insertedTextField.getText());
 			// Set the bet status to true.
-			isValidBet = true;
+			return true;
 		} catch (NullPointerException | NumberFormatException ex) {
 			// Display the an error message.
 			displayInfoLabel.setText("Error. Try a different amount.");
 			// Set the bet status to false.
-			isValidBet = false;
+			return false;
 		}
 	}
 
@@ -124,10 +122,8 @@ public class App extends Application {
 										new EventButton(
 												"Spin",
 												e -> {
-													// Get the amount bet.
-													getAmountBet();
 													// Determine if the bet was valid.
-													if (isValidBet) {
+													if (getAmountBet()) {
 														// Display the slots.
 														displaySlots();
 														// Determine the winnings.
