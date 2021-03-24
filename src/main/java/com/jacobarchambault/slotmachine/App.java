@@ -22,8 +22,6 @@ public class App extends Application {
 	private static final int COLS = 3;
 	// Number of columns
 	private static final int SIZE = 10;
-	// Number of Image objects
-	private static final double ZERO = 0.0; // Zero matches multiplier
 	private static final double DOUBLE = 2.0; // Two matches multiplier
 	private static final double TRIPLE = 3.0; // Three matches multiplier
 
@@ -56,9 +54,9 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// Set all amounts to zero.
-		amountBet = ZERO;
-		amountWon = ZERO;
-		totalWinnings = ZERO;
+		amountBet = 0;
+		amountWon = 0;
+		totalWinnings = 0;
 		// Set the bet status to false.
 		isValidBet = false;
 		// Create an array of ints to represent
@@ -180,7 +178,7 @@ public class App extends Application {
 		} else {
 			// If none of the randomly displayed images match,
 			// the user has won $0.
-			amountWon = amountBet * ZERO;
+			amountWon = 0;
 			displayInfoLabel.setText("No Luck. Play again!");
 		}
 		// Keep a running total of the winnings.
