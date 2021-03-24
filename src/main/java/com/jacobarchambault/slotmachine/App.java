@@ -20,47 +20,34 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 	// Arrays
-	private int[] slotMemory;
+	private int[] slotMemory = new int[3];
 	// To hold the slot values
 	private Image[] images = new Image[] { new Image("file:Apple.png"), new Image("file:Banana.png"),
 			new Image("file:Cherries.png"), new Image("file:Grapes.png"), new Image("file:Lemon.png"),
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
 	// To hold the Image objects
-	private ImageView[] slotImages; // To hold the ImageView components
+	private ImageView[] slotImages = new ImageView[3]; // To hold the ImageView components
 
 	// Betting-related fields
-	private double amountBet;
+	private double amountBet = 0;
 	// To hold the amount bet
-	private double amountWon;
+	private double amountWon = 0;
 	// To hold the amount won
-	private double totalWinnings;
+	private double totalWinnings = 0;
 	// To hold the total winnings
-	private boolean isValidBet;
+	private boolean isValidBet = false;
 	// To hold the status of a bet
 
 	// Controls
-	TextField insertedTextField;
-	Label displayInfoLabel;
-	Label wonThisSpinOutputLabel;
-	Label totalWonOutputLabel;
+	TextField insertedTextField = new TextField();
+	Label displayInfoLabel = new Label("Insert an amount to play.");
+
+	Label wonThisSpinOutputLabel = new Label("0.00");
+	Label totalWonOutputLabel = new Label("0.00");
 
 	@Override
 	public void start(Stage primaryStage) {
-		// Set all amounts to zero.
-		amountBet = 0;
-		amountWon = 0;
-		totalWinnings = 0;
-		// Set the bet status to false.
-		isValidBet = false;
-		// Create an array of ints to represent
-		// the slot machine in memory.
-		slotMemory = new int[3];
-
-		// Create an array of ImageView controls
-		// to represent the visible slots.
-		slotImages = new ImageView[3];
-
 		// Initialize the slotImages array with blank images.
 		for (int i = 0; i < 3; i++) {
 			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
@@ -71,18 +58,15 @@ public class App extends Application {
 
 		// Create the controls for the amount inserted.
 		Label insertedPrompt = new Label("Amount Inserted: $");
-		insertedTextField = new TextField();
 		HBox insertedHBox = new HBox(10, insertedPrompt, insertedTextField);
 		insertedHBox.setAlignment(Pos.CENTER);
 
 		// Create the output labels.
 		Label wonThisSpinDescriptor = new Label("Amount Won This Spin: $");
-		wonThisSpinOutputLabel = new Label("0.00");
 		HBox wonThisSpinHBox = new HBox(10, wonThisSpinDescriptor, wonThisSpinOutputLabel);
 		wonThisSpinHBox.setAlignment(Pos.CENTER);
 
 		Label totalWonDescriptor = new Label("Total Amount Won: $");
-		totalWonOutputLabel = new Label("0.00");
 		HBox totalWonHBox = new HBox(10, totalWonDescriptor, totalWonOutputLabel);
 		totalWonHBox.setAlignment(Pos.CENTER);
 
@@ -103,7 +87,6 @@ public class App extends Application {
 		});
 
 		// Create a Label for instructions and game results.
-		displayInfoLabel = new Label("Insert an amount to play.");
 		// Put everything into a VBox
 		VBox mainVBox = new VBox(10, slotImagesHBox, insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton,
 				displayInfoLabel);
