@@ -19,11 +19,6 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-	// Number of columns
-	private static final int SIZE = 10;
-	private static final double DOUBLE = 2.0; // Two matches multiplier
-	private static final double TRIPLE = 3.0; // Three matches multiplier
-
 	// Arrays
 	private int[] slotMemory;
 	// To hold the slot values
@@ -152,7 +147,7 @@ public class App extends Application {
 		// Create random slots.
 		for (int col = 0; col < 3; col++) {
 			// Generate a random number.
-			int val = rand.nextInt(SIZE);
+			int val = rand.nextInt(10);
 			// Set the slot value in memory.
 			slotMemory[col] = val;
 			// Set the slot image to display.
@@ -166,13 +161,13 @@ public class App extends Application {
 		if (slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2]) {// If three of the images match, the user
 																				// has won
 																				// three times the amount entered.
-			amountWon = amountBet * TRIPLE;
+			amountWon = amountBet * 3;
 			// Display the instructions.
 			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
 		} else if (slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2]) {
 			// If two of the images match, the user has won
 			// two times the amount entered.
-			amountWon = amountBet * DOUBLE;
+			amountWon = amountBet * 2;
 			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
 		} else {
 			// If none of the randomly displayed images match,
