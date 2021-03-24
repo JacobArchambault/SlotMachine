@@ -19,7 +19,6 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-	private static final int COLS = 3;
 	// Number of columns
 	private static final int SIZE = 10;
 	private static final double DOUBLE = 2.0; // Two matches multiplier
@@ -61,14 +60,14 @@ public class App extends Application {
 		isValidBet = false;
 		// Create an array of ints to represent
 		// the slot machine in memory.
-		slotMemory = new int[COLS];
+		slotMemory = new int[3];
 
 		// Create an array of ImageView controls
 		// to represent the visible slots.
-		slotImages = new ImageView[COLS];
+		slotImages = new ImageView[3];
 
 		// Initialize the slotImages array with blank images.
-		for (int i = 0; i < COLS; i++) {
+		for (int i = 0; i < 3; i++) {
 			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
 		}
 
@@ -151,7 +150,7 @@ public class App extends Application {
 		// Create a Random object.
 		Random rand = new Random();
 		// Create random slots.
-		for (int col = 0; col < COLS; col++) {
+		for (int col = 0; col < 3; col++) {
 			// Generate a random number.
 			int val = rand.nextInt(SIZE);
 			// Set the slot value in memory.
