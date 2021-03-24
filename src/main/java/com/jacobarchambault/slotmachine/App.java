@@ -129,12 +129,10 @@ public class App extends Application {
 		insertedHBox.setAlignment(Pos.CENTER);
 
 		// Create the output labels.
-		final var wonThisSpinDescriptor = new Label("Amount Won This Spin: $");
-		final var wonThisSpinHBox = new HBox(10, wonThisSpinDescriptor, wonThisSpinOutputLabel);
+		final var wonThisSpinHBox = new HBox(10, new Label("Amount Won This Spin: $"), wonThisSpinOutputLabel);
 		wonThisSpinHBox.setAlignment(Pos.CENTER);
 
-		final var totalWonDescriptor = new Label("Total Amount Won: $");
-		final var totalWonHBox = new HBox(10, totalWonDescriptor, totalWonOutputLabel);
+		final var totalWonHBox = new HBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel);
 		totalWonHBox.setAlignment(Pos.CENTER);
 
 		// Create the Spin button.
