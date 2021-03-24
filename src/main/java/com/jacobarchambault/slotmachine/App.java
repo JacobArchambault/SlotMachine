@@ -121,8 +121,6 @@ public class App extends Application {
 		}
 
 		// Put the slot images in an HBox.
-		final var slotImagesHBox = new HBox(10, slotImages[0], slotImages[1], slotImages[2]);
-
 		// Create the controls for the amount inserted.
 		final var insertedHBox = new HBox(10, new Label("Amount Inserted: $"), insertedTextField);
 		insertedHBox.setAlignment(Pos.CENTER);
@@ -152,8 +150,8 @@ public class App extends Application {
 
 		// Create a Label for instructions and game results.
 		// Put everything into a VBox
-		final var mainVBox = new VBox(10, slotImagesHBox, insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton,
-				displayInfoLabel);
+		final var mainVBox = new VBox(10, new HBox(10, slotImages[0], slotImages[1], slotImages[2]), insertedHBox,
+				wonThisSpinHBox, totalWonHBox, spinButton, displayInfoLabel);
 		mainVBox.setAlignment(Pos.CENTER);
 		mainVBox.setPadding(new Insets(10));
 		primaryStage.setScene(new Scene(mainVBox));
