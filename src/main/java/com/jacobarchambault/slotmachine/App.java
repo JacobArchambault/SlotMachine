@@ -27,7 +27,9 @@ public class App extends Application {
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
 	// To hold the Image objects
-	private ImageView[] slotImages = new ImageView[3]; // To hold the ImageView components
+	private ImageView blankImage = new ImageView(new Image("file:BlankFruit.png"));
+	private ImageView[] slotImages = new ImageView[] { blankImage, blankImage, blankImage }; // To hold the ImageView
+																								// components
 
 	// Betting-related fields
 	private double amountBet = 0;
