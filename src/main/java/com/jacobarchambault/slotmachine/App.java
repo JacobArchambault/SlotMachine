@@ -19,127 +19,41 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-	// Arrays
-	private int[] slotMemory = new int[3];
+	public static void main(final String[] args) {
+		Application.launch();
+	}
+
+	private double amountBet = 0;
+	// To hold the Image objects
+	private final ImageView blankImage = new ImageView(new Image("file:BlankFruit.png"));
+	Label displayInfoLabel = new Label("Insert an amount to play.");
+
 	// To hold the slot values
-	private Image[] images = new Image[] { new Image("file:Apple.png"), new Image("file:Banana.png"),
+	private final Image[] images = new Image[] { new Image("file:Apple.png"), new Image("file:Banana.png"),
 			new Image("file:Cherries.png"), new Image("file:Grapes.png"), new Image("file:Lemon.png"),
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
-	// To hold the Image objects
-	private ImageView blankImage = new ImageView(new Image("file:BlankFruit.png"));
-	private ImageView[] slotImages = new ImageView[] { blankImage, blankImage, blankImage }; // To hold the ImageView
-																								// components
-
-	private double amountBet = 0;
-	private double totalWinnings = 0;
+	// Controls
+	TextField insertedTextField = new TextField();
 	// To hold the total winnings
 	private boolean isValidBet = false;
 	// To hold the status of a bet
 
-	// Controls
-	TextField insertedTextField = new TextField();
-	Label displayInfoLabel = new Label("Insert an amount to play.");
+	private final ImageView[] slotImages = new ImageView[] { blankImage, blankImage, blankImage }; // To hold the
+																									// ImageView
+																									// components
+	// Arrays
+	private final int[] slotMemory = new int[3];
 
-	Label wonThisSpinOutputLabel = new Label("0.00");
+	private double totalWinnings = 0;
 	Label totalWonOutputLabel = new Label("0.00");
 
-	@Override
-	public void start(Stage primaryStage) {
-		// Initialize the slotImages array with blank images.
-		for (int i = 0; i < 3; i++) {
-			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
-		}
-
-		// Put the slot images in an HBox.
-		HBox slotImagesHBox = new HBox(10, slotImages[0], slotImages[1], slotImages[2]);
-
-		// Create the controls for the amount inserted.
-		Label insertedPrompt = new Label("Amount Inserted: $");
-		HBox insertedHBox = new HBox(10, insertedPrompt, insertedTextField);
-		insertedHBox.setAlignment(Pos.CENTER);
-
-		// Create the output labels.
-		Label wonThisSpinDescriptor = new Label("Amount Won This Spin: $");
-		HBox wonThisSpinHBox = new HBox(10, wonThisSpinDescriptor, wonThisSpinOutputLabel);
-		wonThisSpinHBox.setAlignment(Pos.CENTER);
-
-		Label totalWonDescriptor = new Label("Total Amount Won: $");
-		HBox totalWonHBox = new HBox(10, totalWonDescriptor, totalWonOutputLabel);
-		totalWonHBox.setAlignment(Pos.CENTER);
-
-		// Create the Spin button.
-		Button spinButton = new Button("Spin");
-
-		// Register the event handler.
-		spinButton.setOnAction(e -> {
-			// Get the amount bet.
-			getAmountBet();
-			// Determine if the bet was valid.
-			if (isValidBet) {
-				// Display the slots.
-				displaySlots();
-				// Determine the winnings.
-				determineWinnings();
-			}
-		});
-
-		// Create a Label for instructions and game results.
-		// Put everything into a VBox
-		VBox mainVBox = new VBox(10, slotImagesHBox, insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton,
-				displayInfoLabel);
-		mainVBox.setAlignment(Pos.CENTER);
-		mainVBox.setPadding(new Insets(10));
-		// Add the main VBox to a scene.
-		Scene scene = new Scene(mainVBox);
-		// Set the scene to the stage aand display it.
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch();
-	}
-
-	// The getAmountBet method converts the text to
-	// a double and stores it in the amountBet field.
-	private void getAmountBet() {
-		// Create a String object to hold the input
-		// from the TextField.
-		String strAmountBet = insertedTextField.getText();
-		// Convert the String to a double and store it
-		// in the amountBet field.
-		try {
-			amountBet = Double.parseDouble(strAmountBet);
-			// Set the bet status to true.
-			isValidBet = true;
-		} catch (NullPointerException | NumberFormatException ex) {
-			// Display the an error message.
-			displayInfoLabel.setText("Error. Try a different amount.");
-			// Set the bet status to false.
-			isValidBet = false;
-		}
-	}
-
-	// The displaySlots method displays the slots.
-	private void displaySlots() {
-		// Create a Random object.
-		Random rand = new Random();
-		// Create random slots.
-		for (int col = 0; col < 3; col++) {
-			// Generate a random number.
-			int val = rand.nextInt(10);
-			// Set the slot value in memory.
-			slotMemory[col] = val;
-			// Set the slot image to display.
-			slotImages[col].setImage(images[val]);
-		}
-	}
+	Label wonThisSpinOutputLabel = new Label("0.00");
 
 	// The determineWinnings method determines the winnings.
 	private void determineWinnings() {
 		// Determine the winnings.
-		double amountWon = 0;
+		var amountWon;
 		if (slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2]) {// If three of the images match, the user
 																				// has won
 																				// three times the amount entered.
@@ -162,5 +76,93 @@ public class App extends Application {
 		// Display the winnings.
 		wonThisSpinOutputLabel.setText(String.format("%,.2f", amountWon));
 		totalWonOutputLabel.setText(String.format("%,.2f", totalWinnings));
+	}
+
+	// The displaySlots method displays the slots.
+	private void displaySlots() {
+		// Create a Random object.
+		final var rand = new Random();
+		// Create random slots.
+		for (var col = 0; col < 3; col++) {
+			// Generate a random number.
+			final var val = rand.nextInt(10);
+			// Set the slot value in memory.
+			slotMemory[col] = val;
+			// Set the slot image to display.
+			slotImages[col].setImage(images[val]);
+		}
+	}
+
+	// The getAmountBet method converts the text to
+	// a double and stores it in the amountBet field.
+	private void getAmountBet() {
+		// Create a String object to hold the input
+		// from the TextField.
+		final var strAmountBet = insertedTextField.getText();
+		// Convert the String to a double and store it
+		// in the amountBet field.
+		try {
+			amountBet = Double.parseDouble(strAmountBet);
+			// Set the bet status to true.
+			isValidBet = true;
+		} catch (NullPointerException | NumberFormatException ex) {
+			// Display the an error message.
+			displayInfoLabel.setText("Error. Try a different amount.");
+			// Set the bet status to false.
+			isValidBet = false;
+		}
+	}
+
+	@Override
+	public void start(final Stage primaryStage) {
+		// Initialize the slotImages array with blank images.
+		for (var i = 0; i < 3; i++) {
+			slotImages[i] = new ImageView(new Image("file:BlankFruit.png"));
+		}
+
+		// Put the slot images in an HBox.
+		final var slotImagesHBox = new HBox(10, slotImages[0], slotImages[1], slotImages[2]);
+
+		// Create the controls for the amount inserted.
+		final var insertedPrompt = new Label("Amount Inserted: $");
+		final var insertedHBox = new HBox(10, insertedPrompt, insertedTextField);
+		insertedHBox.setAlignment(Pos.CENTER);
+
+		// Create the output labels.
+		final var wonThisSpinDescriptor = new Label("Amount Won This Spin: $");
+		final var wonThisSpinHBox = new HBox(10, wonThisSpinDescriptor, wonThisSpinOutputLabel);
+		wonThisSpinHBox.setAlignment(Pos.CENTER);
+
+		final var totalWonDescriptor = new Label("Total Amount Won: $");
+		final var totalWonHBox = new HBox(10, totalWonDescriptor, totalWonOutputLabel);
+		totalWonHBox.setAlignment(Pos.CENTER);
+
+		// Create the Spin button.
+		final var spinButton = new Button("Spin");
+
+		// Register the event handler.
+		spinButton.setOnAction(e -> {
+			// Get the amount bet.
+			getAmountBet();
+			// Determine if the bet was valid.
+			if (isValidBet) {
+				// Display the slots.
+				displaySlots();
+				// Determine the winnings.
+				determineWinnings();
+			}
+		});
+
+		// Create a Label for instructions and game results.
+		// Put everything into a VBox
+		final var mainVBox = new VBox(10, slotImagesHBox, insertedHBox, wonThisSpinHBox, totalWonHBox, spinButton,
+				displayInfoLabel);
+		mainVBox.setAlignment(Pos.CENTER);
+		mainVBox.setPadding(new Insets(10));
+		// Add the main VBox to a scene.
+		final var scene = new Scene(mainVBox);
+		// Set the scene to the stage aand display it.
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 }
