@@ -31,11 +31,7 @@ public class App extends Application {
 	private ImageView[] slotImages = new ImageView[] { blankImage, blankImage, blankImage }; // To hold the ImageView
 																								// components
 
-	// Betting-related fields
 	private double amountBet = 0;
-	// To hold the amount bet
-	private double amountWon = 0;
-	// To hold the amount won
 	private double totalWinnings = 0;
 	// To hold the total winnings
 	private boolean isValidBet = false;
@@ -143,6 +139,7 @@ public class App extends Application {
 	// The determineWinnings method determines the winnings.
 	private void determineWinnings() {
 		// Determine the winnings.
+		double amountWon = 0;
 		if (slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2]) {// If three of the images match, the user
 																				// has won
 																				// three times the amount entered.
