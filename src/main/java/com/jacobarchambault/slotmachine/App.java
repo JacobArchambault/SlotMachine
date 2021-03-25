@@ -18,9 +18,6 @@ public class App extends Application {
 	public static void main(final String[] args) {
 		Application.launch();
 	}
-
-	final Random rand = new Random();
-
 	// To hold the Image objects
 	Label displayInfoLabel = new Label("Insert an amount to play.");
 
@@ -38,7 +35,7 @@ public class App extends Application {
 	// ImageView
 	// components
 	// Arrays
-	Slots slots = new Slots(rand, slotImages, images);
+	Slots slots = new Slots(new Random(), slotImages, images);
 
 	private double totalWinnings = 0;
 	Label totalWonOutputLabel = new Label("0.00");
