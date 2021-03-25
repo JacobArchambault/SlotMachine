@@ -4,7 +4,6 @@ import java.util.Random;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -49,13 +48,13 @@ public class App extends Application {
 	private void determineWinnings() {
 		// Determine the winnings.
 		var amountWon = 0D;
-		if (slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2]) {// If three of the images match, the user
+		if (threeMatch()) {// If three of the images match, the user
 																				// has won
 																				// three times the amount entered.
 			amountWon = amountBet * 3;
 			// Display the instructions.
 			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
-		} else if (slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2]) {
+		} else if (twoMatch()) {
 			// If two of the images match, the user has won
 			// two times the amount entered.
 			amountWon = amountBet * 2;
@@ -71,6 +70,14 @@ public class App extends Application {
 		// Display the winnings.
 		wonThisSpinOutputLabel.setText(String.format("%,.2f", amountWon));
 		totalWonOutputLabel.setText(String.format("%,.2f", totalWinnings));
+	}
+
+	private boolean twoMatch() {
+		return slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2];
+	}
+
+	private boolean threeMatch() {
+		return slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2];
 	}
 
 	// The displaySlots method displays the slots.
