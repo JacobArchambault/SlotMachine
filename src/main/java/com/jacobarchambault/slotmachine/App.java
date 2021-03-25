@@ -71,7 +71,7 @@ public class App extends Application {
 	}
 
 	// The displaySlots method displays the slots.
-	private int[] displaySlots() {
+	private int[] spin() {
 		// Create a Random object.
 		// Create random slots.
 		int[] slotMemory = new int[3];
@@ -109,7 +109,7 @@ public class App extends Application {
 														// Determine the winnings.
 														double amountWon = determineWinnings(
 																Double.parseDouble(insertedTextField.getText()),
-																matches(displaySlots()));
+																matches(spin()));
 														// Display the winnings.
 														wonThisSpinOutputLabel
 																.setText(String.format("%,.2f", amountWon));
