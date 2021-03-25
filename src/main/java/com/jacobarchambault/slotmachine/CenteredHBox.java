@@ -6,7 +6,7 @@ import javafx.scene.layout.HBox;
 
 public class CenteredHBox extends HBox {
 
-	CenteredHBox(double spacing, Node... children) {
+	CenteredHBox(final double spacing, final Node... children) {
 		super(spacing, children);
 		setAlignment(Pos.CENTER);
 	}

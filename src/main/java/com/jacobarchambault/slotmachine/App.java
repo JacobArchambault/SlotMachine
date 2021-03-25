@@ -18,56 +18,30 @@ public class App extends Application {
 	public static void main(final String[] args) {
 		Application.launch();
 	}
-	// To hold the Image objects
-	Label displayInfoLabel = new Label("Insert an amount to play.");
 
 	// To hold the slot values
 	private final Image[] images = new Image[] { new Image("file:Apple.png"), new Image("file:Banana.png"),
 			new Image("file:Cherries.png"), new Image("file:Grapes.png"), new Image("file:Lemon.png"),
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
+
+	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
+			new ImageView(images[2]) }; // To hold the
+	private double totalWinnings = 0;
+
+	// To hold the Image objects
+	Label displayInfoLabel = new Label("Insert an amount to play.");
 	// Controls
 	TextField insertedTextField = new TextField();
 	// To hold the total winnings
 
-	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
-			new ImageView(images[2]) }; // To hold the
 	// ImageView
 	// components
 	// Arrays
 	Slots slots = new Slots(new Random(), slotImages, images);
-
-	private double totalWinnings = 0;
 	Label totalWonOutputLabel = new Label("0.00");
 
 	Label wonThisSpinOutputLabel = new Label("0.00");
-
-	// The determineWinnings method determines the winnings.
-	private double determineWinnings(double amountBet, int matches) {
-		return amountBet * matches;
-	}
-
-	private int matches(int[] slotMemory) {
-		if (threeMatch(slotMemory)) {
-			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
-			return 3;
-		} else if (twoMatch(slotMemory)) {
-			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
-			return 2;
-		} else {
-			displayInfoLabel.setText("No Luck. Play again!");
-			return 0;
-		}
-	}
-
-	private boolean twoMatch(int[] slotMemory) {
-		return slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2];
-	}
-
-	private boolean threeMatch(int[] slotMemory) {
-		return slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2];
-	}
-
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -90,7 +64,7 @@ public class App extends Application {
 													// Display the slots.
 													try {
 														// Determine the winnings.
-														double amountWon = determineWinnings(
+														final var amountWon = determineWinnings(
 																Double.parseDouble(insertedTextField.getText()),
 																matches(slots.spin()));
 														// Display the winnings.
@@ -99,12 +73,38 @@ public class App extends Application {
 														totalWinnings += amountWon;
 														totalWonOutputLabel
 																.setText(String.format("%,.2f", totalWinnings));
-													} catch (Exception ex) {
+													} catch (final Exception ex) {
 														displayInfoLabel.setText("Error. Try a different amount.");
 													}
 
 												}),
 										displayInfoLabel)));
 		primaryStage.show();
+	}
+
+	// The determineWinnings method determines the winnings.
+	private double determineWinnings(final double amountBet, final int matches) {
+		return amountBet * matches;
+	}
+
+	private int matches(final int[] slotMemory) {
+		if (threeMatch(slotMemory)) {
+			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
+			return 3;
+		} else if (twoMatch(slotMemory)) {
+			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
+			return 2;
+		} else {
+			displayInfoLabel.setText("No Luck. Play again!");
+			return 0;
+		}
+	}
+
+	private boolean threeMatch(final int[] slotMemory) {
+		return slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2];
+	}
+
+	private boolean twoMatch(final int[] slotMemory) {
+		return slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2];
 	}
 }
