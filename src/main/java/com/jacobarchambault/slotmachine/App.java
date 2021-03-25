@@ -45,31 +45,25 @@ public class App extends Application {
 	Label wonThisSpinOutputLabel = new Label("0.00");
 
 	// The determineWinnings method determines the winnings.
-	private void determineWinnings() {
+	private double determineWinnings() {
 		// Determine the winnings.
-		var amountWon = 0D;
 		if (threeMatch()) {// If three of the images match, the user
-																				// has won
-																				// three times the amount entered.
-			amountWon = amountBet * 3;
-			// Display the instructions.
+							// has won
+							// three times the amount entered.
 			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
+			return amountBet * 3;
+			// Display the instructions.
 		} else if (twoMatch()) {
 			// If two of the images match, the user has won
 			// two times the amount entered.
-			amountWon = amountBet * 2;
 			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
+			return amountBet * 2;
 		} else {
 			// If none of the randomly displayed images match,
 			// the user has won $0.
-			amountWon = 0;
 			displayInfoLabel.setText("No Luck. Play again!");
+			return 0;
 		}
-		// Keep a running total of the winnings.
-		totalWinnings += amountWon;
-		// Display the winnings.
-		wonThisSpinOutputLabel.setText(String.format("%,.2f", amountWon));
-		totalWonOutputLabel.setText(String.format("%,.2f", totalWinnings));
 	}
 
 	private boolean twoMatch() {
@@ -134,7 +128,14 @@ public class App extends Application {
 														// Display the slots.
 														displaySlots();
 														// Determine the winnings.
-														determineWinnings();
+														double amountWon = determineWinnings();
+														totalWinnings += amountWon;
+														// Display the winnings.
+														wonThisSpinOutputLabel
+																.setText(String.format("%,.2f", amountWon));
+														totalWonOutputLabel
+																.setText(String.format("%,.2f", totalWinnings));
+
 													}
 												}),
 										displayInfoLabel)));
