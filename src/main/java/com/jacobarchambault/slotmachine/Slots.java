@@ -7,19 +7,23 @@ import javafx.scene.image.ImageView;
 
 public class Slots {
 
+	Image[] images;
 	Random rand;
 	ImageView[] slotImages;
-	Image[] images;
 
-	Slots(Random random, ImageView[] slotImages, Image[] images) {
-		this.rand = random;
+	Slots(final Random random, final ImageView[] slotImages, final Image[] images) {
+		rand = random;
 		this.slotImages = slotImages;
 		this.images = images;
 	}
 
+	private int lesser(final int[] slotMemory, final Object[] iv) {
+		return slotMemory.length < iv.length ? slotMemory.length : iv.length;
+	}
+
 	int[] spin() {
-		int[] slotMemory =  rand.ints(0, 10).limit(3).toArray();
-		for (var col = 0; col < 3; col++) {
+		final var slotMemory = rand.ints(0, 10).limit(3).toArray();
+		for (var col = 0; col < lesser(slotMemory, slotImages); col++) {
 			slotImages[col].setImage(images[slotMemory[col]]);
 		}
 		return slotMemory;
