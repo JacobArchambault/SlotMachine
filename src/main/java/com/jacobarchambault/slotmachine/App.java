@@ -19,6 +19,8 @@ public class App extends Application {
 		Application.launch();
 	}
 
+	final Random rand = new Random();
+
 	// To hold the Image objects
 	Label displayInfoLabel = new Label("Insert an amount to play.");
 
@@ -71,7 +73,6 @@ public class App extends Application {
 	// The displaySlots method displays the slots.
 	private int[] displaySlots() {
 		// Create a Random object.
-		final var rand = new Random();
 		// Create random slots.
 		int[] slotMemory = new int[3];
 		for (var col = 0; col < 3; col++) {
