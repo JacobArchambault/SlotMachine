@@ -51,12 +51,12 @@ public class App extends Application {
 								new MainVBox(
 										10,
 										new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
-										new CenteredHBox(10, new Label("Amount Inserted: $"), insertedTextField),
+										new CenteredHBox(10, new Label("Amount Inserted: "), insertedTextField),
 										new CenteredHBox(
 												10,
-												new Label("Amount Won This Spin: $"),
+												new Label("Amount Won This Spin: "),
 												wonThisSpinOutputLabel),
-										new CenteredHBox(10, new Label("Total Amount Won: $"), totalWonOutputLabel),
+										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton(
 												"Spin",
 												e -> {
@@ -69,10 +69,10 @@ public class App extends Application {
 																displayText(numberOfMatches(slots.spin())));
 														// Display the winnings.
 														wonThisSpinOutputLabel
-																.setText(String.format("%,.2f", amountWon));
+																.setText(String.format("$%,.2f", amountWon));
 														totalWinnings += amountWon;
 														totalWonOutputLabel
-																.setText(String.format("%,.2f", totalWinnings));
+																.setText(String.format("$%,.2f", totalWinnings));
 													} catch (final Exception ex) {
 														displayInfoLabel.setText("Error. Try a different amount.");
 													}
