@@ -38,6 +38,7 @@ public class App extends Application {
 	// ImageView
 	// components
 	// Arrays
+	Slots slots = new Slots(rand, slotImages, images);
 
 	private double totalWinnings = 0;
 	Label totalWonOutputLabel = new Label("0.00");
@@ -70,21 +71,6 @@ public class App extends Application {
 		return slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2];
 	}
 
-	// The displaySlots method displays the slots.
-	private int[] spin() {
-		// Create a Random object.
-		// Create random slots.
-		int[] slotMemory = new int[3];
-		for (var col = 0; col < 3; col++) {
-			// Generate a random number.
-			final var val = rand.nextInt(10);
-			// Set the slot value in memory.
-			slotMemory[col] = val;
-			// Set the slot image to display.
-			slotImages[col].setImage(images[val]);
-		}
-		return slotMemory;
-	}
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -109,7 +95,7 @@ public class App extends Application {
 														// Determine the winnings.
 														double amountWon = determineWinnings(
 																Double.parseDouble(insertedTextField.getText()),
-																matches(spin()));
+																matches(slots.spin()));
 														// Display the winnings.
 														wonThisSpinOutputLabel
 																.setText(String.format("%,.2f", amountWon));
