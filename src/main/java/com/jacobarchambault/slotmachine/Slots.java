@@ -18,14 +18,9 @@ public class Slots {
 	}
 
 	int[] spin() {
-		int[] slotMemory = new int[3];
+		int[] slotMemory =  rand.ints(0, 10).limit(3).toArray();
 		for (var col = 0; col < 3; col++) {
-			// Generate a random number.
-			final var val = rand.nextInt(10);
-			// Set the slot value in memory.
-			slotMemory[col] = val;
-			// Set the slot image to display.
-			slotImages[col].setImage(images[val]);
+			slotImages[col].setImage(images[slotMemory[col]]);
 		}
 		return slotMemory;
 	}
