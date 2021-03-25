@@ -43,22 +43,18 @@ public class App extends Application {
 	Label wonThisSpinOutputLabel = new Label("0.00");
 
 	// The determineWinnings method determines the winnings.
-	private double determineWinnings(double amountBet, int[] slotMemory) {
-		// Determine the winnings.
-		if (threeMatch(slotMemory)) {// If three of the images match, the user
-			// has won
-			// three times the amount entered.
+	private double determineWinnings(double amountBet, int matches) {
+		return amountBet * matches;
+	}
+
+	private int matches(int[] slotMemory) {
+		if (threeMatch(slotMemory)) {
 			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
-			return amountBet * 3;
-			// Display the instructions.
+			return 3;
 		} else if (twoMatch(slotMemory)) {
-			// If two of the images match, the user has won
-			// two times the amount entered.
 			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
-			return amountBet * 2;
+			return 2;
 		} else {
-			// If none of the randomly displayed images match,
-			// the user has won $0.
 			displayInfoLabel.setText("No Luck. Play again!");
 			return 0;
 		}
@@ -112,11 +108,11 @@ public class App extends Application {
 														// Determine the winnings.
 														double amountWon = determineWinnings(
 																Double.parseDouble(insertedTextField.getText()),
-																displaySlots());
-														totalWinnings += amountWon;
+																matches(displaySlots()));
 														// Display the winnings.
 														wonThisSpinOutputLabel
 																.setText(String.format("%,.2f", amountWon));
+														totalWinnings += amountWon;
 														totalWonOutputLabel
 																.setText(String.format("%,.2f", totalWinnings));
 													} catch (Exception ex) {
