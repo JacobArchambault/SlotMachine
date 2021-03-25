@@ -66,7 +66,7 @@ public class App extends Application {
 														// Determine the winnings.
 														final var amountWon = determineWinnings(
 																Double.parseDouble(insertedTextField.getText()),
-																matches(slots.spin()));
+																displayText(numberOfMatches(slots.spin())));
 														// Display the winnings.
 														wonThisSpinOutputLabel
 																.setText(String.format("%,.2f", amountWon));
@@ -87,24 +87,24 @@ public class App extends Application {
 		return amountBet * matches;
 	}
 
-	private int matches(final int[] slotMemory) {
-		if (threeMatch(slotMemory)) {
-			displayInfoLabel.setText("Jackpot! TRIPLE WIN x 3!!");
-			return 3;
-		} else if (twoMatch(slotMemory)) {
-			displayInfoLabel.setText("Sweet! DOUBLE WIN x 2!!");
-			return 2;
-		} else {
-			displayInfoLabel.setText("No Luck. Play again!");
-			return 0;
-		}
+	private int numberOfMatches(final int[] slotMemory) {
+		return threeMatch(slotMemory) ? 3 : twoMatch(slotMemory) ? 2 : 0;
 	}
 
-	private boolean threeMatch(final int[] slotMemory) {
+	private static boolean threeMatch(final int[] slotMemory) {
 		return slotMemory[0] == slotMemory[1] && slotMemory[0] == slotMemory[2];
 	}
 
-	private boolean twoMatch(final int[] slotMemory) {
+	private static boolean twoMatch(final int[] slotMemory) {
 		return slotMemory[0] == slotMemory[1] || slotMemory[0] == slotMemory[2] || slotMemory[1] == slotMemory[2];
 	}
+
+	int displayText(int forMatchNumber) {
+		displayInfoLabel
+				.setText(
+						forMatchNumber == 3 ? "Jackpot! TRIPLE WIN x 3!!"
+								: forMatchNumber == 2 ? "Sweet! DOUBLE WIN x 2!!" : "No Luck. Play again!");
+		return forMatchNumber;
+	}
+
 }
