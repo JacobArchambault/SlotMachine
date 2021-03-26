@@ -35,17 +35,21 @@ class EventButton extends Button {
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
 		this.totalWonOutputLabel = totalWonOutputLabel;
 		setOnAction(e -> {
-			try {
-				int[] ints = slots.spin();
-				final var fromMatches = Spin.numberOfMatches(ints);
-				final var amountWon = insertedTextField.determineWinnings(fromMatches);
-				displayInfoLabel.displayMatchText(fromMatches);
-				slimgs.change(ints);
-				wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
-				totalWonOutputLabel.displayUpdate(amountWon);
-			} catch (final NumberFormatException ex) {
-				displayInfoLabel.setText("Insert an amount to play.");
-			}
+			extracted();
 		});
+	}
+
+	private void extracted() {
+		try {
+			int[] ints = slots.spin();
+			final var fromMatches = Spin.numberOfMatches(ints);
+			final var amountWon = insertedTextField.determineWinnings(fromMatches);
+			displayInfoLabel.displayMatchText(fromMatches);
+			slimgs.change(ints);
+			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
+			totalWonOutputLabel.displayUpdate(amountWon);
+		} catch (final NumberFormatException ex) {
+			displayInfoLabel.setText("Insert an amount to play.");
+		}
 	}
 }
