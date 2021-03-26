@@ -29,7 +29,7 @@ public class App extends Application {
 	private double totalWinnings = 0;
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
-	TextField insertedTextField = new TextField();
+	NumberInput insertedTextField = new NumberInput();
 	SlotImages slimgs = new SlotImages(slotImages, images);
 	Slots slots = new Slots(new Random(), images, slotImages);
 	Label totalWonOutputLabel = new Label("0.00");
@@ -55,7 +55,7 @@ public class App extends Application {
 												final var ints = slots.spin();
 												slimgs.change(ints);
 												int matches = Spin.numberOfMatches(ints);
-												final var amountWon = determineWinnings(
+												final var amountWon = insertedTextField.determineWinnings(
 														Double.parseDouble(insertedTextField.getText()),
 														matches);
 												displayInfoLabel.displayText(matches);
@@ -71,8 +71,5 @@ public class App extends Application {
 		primaryStage.show();
 	}
 
-	private double determineWinnings(final double amountBet, final int matches) {
-		return amountBet * matches;
-	}
 
 }
