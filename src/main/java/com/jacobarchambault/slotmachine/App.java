@@ -30,9 +30,9 @@ public class App extends Application {
 	NumberInput insertedTextField = new NumberInput();
 	SlotImages slimgs = new SlotImages(slotImages, images);
 	Slots slots = new Slots(new Random(), images, slotImages);
-	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("0.00");
+	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 
-	Label wonThisSpinOutputLabel = new Label("0.00");
+	Label wonThisSpinOutputLabel = new Label("$0.00");
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -59,7 +59,7 @@ public class App extends Application {
 		try {
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = insertedTextField.determineWinnings(fromMatches);
-			displayInfoLabel.setText(displayInfoLabel.matchText(fromMatches));
+			displayInfoLabel.displayMatchText(fromMatches);
 			slimgs.change(ints);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 			totalWonOutputLabel.displayUpdate(amountWon);
