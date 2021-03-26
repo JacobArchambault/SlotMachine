@@ -51,23 +51,25 @@ public class App extends Application {
 												wonThisSpinOutputLabel),
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton("Spin", e -> {
-											try {
-												final var ints = slots.spin();
-												int fromMatches = Spin.numberOfMatches(ints);
-												final var amountWon = insertedTextField.determineWinnings(
-														fromMatches);
-												displayInfoLabel.displayText(fromMatches);
-												slimgs.change(ints);
-												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
-												totalWinnings += amountWon;
-												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
-											} catch (final NumberFormatException ex) {
-												displayInfoLabel.setText("Insert an amount to play.");
-											}
-
+											doTheThings(slots.spin());
 										}),
 										displayInfoLabel)));
 		primaryStage.show();
+	}
+
+	private void doTheThings(int[] ints) {
+		try {
+			int fromMatches = Spin.numberOfMatches(ints);
+			final var amountWon = insertedTextField.determineWinnings(
+					fromMatches);
+			displayInfoLabel.displayText(fromMatches);
+			slimgs.change(ints);
+			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
+			totalWinnings += amountWon;
+			totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
+		} catch (final NumberFormatException ex) {
+			displayInfoLabel.setText("Insert an amount to play.");
+		}
 	}
 
 
