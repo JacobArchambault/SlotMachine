@@ -24,21 +24,14 @@ public class App extends Application {
 			new Image("file:Cherries.png"), new Image("file:Grapes.png"), new Image("file:Lemon.png"),
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
-
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
 			new ImageView(images[2]) }; // To hold the
 	private double totalWinnings = 0;
-
-	// To hold the Image objects
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
-	// Controls
-	TextField insertedTextField = new TextField();
-	// To hold the total winnings
 
-	// ImageView
-	// components
-	// Arrays
-	Spin spin = new Spin(new Slots(new Random(), slotImages, images));
+	TextField insertedTextField = new TextField();
+	SlotImages slimgs = new SlotImages(slotImages, images);
+	Slots slots = new Slots(new Random(), images, slotImages);
 	Label totalWonOutputLabel = new Label("0.00");
 
 	Label wonThisSpinOutputLabel = new Label("0.00");
@@ -59,9 +52,11 @@ public class App extends Application {
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton("Spin", e -> {
 											try {
+												final var ints = slots.spin();
+												slimgs.change(ints);
 												final var amountWon = determineWinnings(
 														Double.parseDouble(insertedTextField.getText()),
-														displayInfoLabel.displayText(spin.numberOfMatches()));
+														displayInfoLabel.displayText(Spin.numberOfMatches(ints)));
 												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 												totalWinnings += amountWon;
 												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
