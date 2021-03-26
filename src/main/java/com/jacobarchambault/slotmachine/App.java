@@ -49,14 +49,15 @@ public class App extends Application {
 												wonThisSpinOutputLabel),
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton("Spin", e -> {
-											doTheThings(slots.spin());
+											doTheThings();
 										}),
 										displayInfoLabel)));
 		primaryStage.show();
 	}
 
-	private void doTheThings(final int[] ints) {
+	private void doTheThings() {
 		try {
+			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = insertedTextField.determineWinnings(fromMatches);
 			displayInfoLabel.displayMatchText(fromMatches);
