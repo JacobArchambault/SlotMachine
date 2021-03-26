@@ -32,7 +32,7 @@ public class App extends Application {
 	NumberInput insertedTextField = new NumberInput();
 	SlotImages slimgs = new SlotImages(slotImages, images);
 	Slots slots = new Slots(new Random(), images, slotImages);
-	Label totalWonOutputLabel = new Label("0.00");
+	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("0.00");
 
 	Label wonThisSpinOutputLabel = new Label("0.00");
 
