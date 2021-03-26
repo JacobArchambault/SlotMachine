@@ -62,7 +62,7 @@ public class App extends Application {
 			displayInfoLabel.displayText(fromMatches);
 			slimgs.change(ints);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
-			totalWonOutputLabel.setText(String.format("$%,.2f", totalWonOutputLabel.update(amountWon)));
+			totalWonOutputLabel.displayUpdate(amountWon);
 		} catch (final NumberFormatException ex) {
 			displayInfoLabel.setText("Insert an amount to play.");
 		}

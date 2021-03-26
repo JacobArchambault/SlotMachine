@@ -15,8 +15,12 @@ public class TotalWinningsLabel extends Label {
 		totalWinnings = startAmount;
 	}
 
-	double update(final double amountWon) {
+	private double update(final double amountWon) {
 		totalWinnings += amountWon;
 		return totalWinnings;
+	}
+
+	public void displayUpdate(double amountWon) {
+		setText(String.format("$%,.2f", update(amountWon)));
 	}
 }
