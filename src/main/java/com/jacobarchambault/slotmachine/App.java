@@ -5,7 +5,6 @@ import java.util.Random;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,8 +24,7 @@ public class App extends Application {
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
-			new ImageView(images[2]) }; 
-	private double totalWinnings = 0;
+			new ImageView(images[2]) };
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
 	NumberInput insertedTextField = new NumberInput();
@@ -57,20 +55,17 @@ public class App extends Application {
 		primaryStage.show();
 	}
 
-	private void doTheThings(int[] ints) {
+	private void doTheThings(final int[] ints) {
 		try {
-			int fromMatches = Spin.numberOfMatches(ints);
-			final var amountWon = insertedTextField.determineWinnings(
-					fromMatches);
+			final var fromMatches = Spin.numberOfMatches(ints);
+			final var amountWon = insertedTextField.determineWinnings(fromMatches);
 			displayInfoLabel.displayText(fromMatches);
 			slimgs.change(ints);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
-			totalWinnings += amountWon;
-			totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
+			totalWonOutputLabel.setText(String.format("$%,.2f", totalWonOutputLabel.update(amountWon)));
 		} catch (final NumberFormatException ex) {
 			displayInfoLabel.setText("Insert an amount to play.");
 		}
 	}
-
 
 }

@@ -14,4 +14,7 @@ final class Spin {
 		return Spin.threeMatch(slotMemory) ? 3 : Spin.twoMatch(slotMemory) ? 2 : 0;
 	}
 
+	private Spin() {
+	}
+
 }
