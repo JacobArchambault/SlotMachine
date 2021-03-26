@@ -53,11 +53,11 @@ public class App extends Application {
 										new EventButton("Spin", e -> {
 											try {
 												final var ints = slots.spin();
-												slimgs.change(ints);
 												int matches = Spin.numberOfMatches(ints);
 												final var amountWon = insertedTextField.determineWinnings(
 														matches);
 												displayInfoLabel.displayText(matches);
+												slimgs.change(ints);
 												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 												totalWinnings += amountWon;
 												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
