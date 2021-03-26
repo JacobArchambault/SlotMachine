@@ -62,7 +62,7 @@ public class App extends Application {
 												totalWinnings += amountWon;
 												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
 											} catch (final NumberFormatException ex) {
-												displayInfoLabel.setText("Error. Try a different amount.");
+												displayInfoLabel.setText("Insert an amount to play.");
 											}
 
 										}),
