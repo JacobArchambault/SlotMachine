@@ -59,7 +59,7 @@ public class App extends Application {
 		try {
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = insertedTextField.determineWinnings(fromMatches);
-			displayInfoLabel.displayText(fromMatches);
+			displayInfoLabel.setText(displayInfoLabel.matchText(fromMatches));
 			slimgs.change(ints);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 			totalWonOutputLabel.displayUpdate(amountWon);

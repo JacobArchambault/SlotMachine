@@ -8,11 +8,9 @@ class DisplayLabel extends Label {
 		super(text);
 	}
 
-	int displayText(final int forMatchNumber) {
-		setText(
-				forMatchNumber == 3 ? "Jackpot! TRIPLE WIN x 3!!"
-						: forMatchNumber == 2 ? "Sweet! DOUBLE WIN x 2!!" : "No Luck. Play again!");
-		return forMatchNumber;
+	String matchText(final int forMatchNumber) {
+		return forMatchNumber == 3 ? "Jackpot! TRIPLE WIN x 3!!"
+				: forMatchNumber == 2 ? "Sweet! DOUBLE WIN x 2!!" : "No Luck. Play again!";
 	}
 
 }
