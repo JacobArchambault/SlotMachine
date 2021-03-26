@@ -25,7 +25,7 @@ public class App extends Application {
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
-			new ImageView(images[2]) }; // To hold the
+			new ImageView(images[2]) }; 
 	private double totalWinnings = 0;
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
@@ -54,9 +54,11 @@ public class App extends Application {
 											try {
 												final var ints = slots.spin();
 												slimgs.change(ints);
+												int matches = Spin.numberOfMatches(ints);
 												final var amountWon = determineWinnings(
 														Double.parseDouble(insertedTextField.getText()),
-														displayInfoLabel.displayText(Spin.numberOfMatches(ints)));
+														matches);
+												displayInfoLabel.displayText(matches);
 												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 												totalWinnings += amountWon;
 												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
