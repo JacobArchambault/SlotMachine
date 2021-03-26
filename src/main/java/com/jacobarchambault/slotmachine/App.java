@@ -30,7 +30,7 @@ public class App extends Application {
 	private double totalWinnings = 0;
 
 	// To hold the Image objects
-	Label displayInfoLabel = new Label("Insert an amount to play.");
+	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 	// Controls
 	TextField insertedTextField = new TextField();
 	// To hold the total winnings
@@ -38,7 +38,7 @@ public class App extends Application {
 	// ImageView
 	// components
 	// Arrays
-	Slots slots = new Slots(new Random(), slotImages, images);
+	Spin spin = new Spin(new Slots(new Random(), slotImages, images));
 	Label totalWonOutputLabel = new Label("0.00");
 
 	Label wonThisSpinOutputLabel = new Label("0.00");
@@ -57,44 +57,25 @@ public class App extends Application {
 												new Label("Amount Won This Spin: "),
 												wonThisSpinOutputLabel),
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
-										new EventButton(
-												"Spin",
-												e -> {
-													// Determine if the bet was valid.
-													// Display the slots.
-													try {
-														// Determine the winnings.
-														final var amountWon = determineWinnings(
-																Double.parseDouble(insertedTextField.getText()),
-																displayText(slots.numberOfMatches(slots.spin())));
-														// Display the winnings.
-														wonThisSpinOutputLabel
-																.setText(String.format("$%,.2f", amountWon));
-														totalWinnings += amountWon;
-														totalWonOutputLabel
-																.setText(String.format("$%,.2f", totalWinnings));
-													} catch (final Exception ex) {
-														displayInfoLabel.setText("Error. Try a different amount.");
-													}
+										new EventButton("Spin", e -> {
+											try {
+												final var amountWon = determineWinnings(
+														Double.parseDouble(insertedTextField.getText()),
+														displayInfoLabel.displayText(spin.numberOfMatches()));
+												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
+												totalWinnings += amountWon;
+												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
+											} catch (final Exception ex) {
+												displayInfoLabel.setText("Error. Try a different amount.");
+											}
 
-												}),
+										}),
 										displayInfoLabel)));
 		primaryStage.show();
 	}
 
-	// The determineWinnings method determines the winnings.
 	private double determineWinnings(final double amountBet, final int matches) {
 		return amountBet * matches;
-	}
-
-
-
-	int displayText(int forMatchNumber) {
-		displayInfoLabel
-				.setText(
-						forMatchNumber == 3 ? "Jackpot! TRIPLE WIN x 3!!"
-								: forMatchNumber == 2 ? "Sweet! DOUBLE WIN x 2!!" : "No Luck. Play again!");
-		return forMatchNumber;
 	}
 
 }
