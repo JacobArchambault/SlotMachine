@@ -53,15 +53,15 @@ public class App extends Application {
 										new EventButton("Spin", e -> {
 											try {
 												final var ints = slots.spin();
-												int matches = Spin.numberOfMatches(ints);
+												int fromMatches = Spin.numberOfMatches(ints);
 												final var amountWon = insertedTextField.determineWinnings(
-														matches);
-												displayInfoLabel.displayText(matches);
+														fromMatches);
+												displayInfoLabel.displayText(fromMatches);
 												slimgs.change(ints);
 												wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 												totalWinnings += amountWon;
 												totalWonOutputLabel.setText(String.format("$%,.2f", totalWinnings));
-											} catch (final Exception ex) {
+											} catch (final NumberFormatException ex) {
 												displayInfoLabel.setText("Error. Try a different amount.");
 											}
 
