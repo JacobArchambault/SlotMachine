@@ -44,7 +44,7 @@ public class App extends Application {
 										new CenteredHBox(new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton(
 												"Spin",
-												new Slots(new Random(), images, slotImages),
+												new Slots(new SlotImages(new Random(), slotImages), images),
 												insertedTextField,
 												displayInfoLabel,
 												new UI(wonThisSpinOutputLabel, totalWonOutputLabel)),

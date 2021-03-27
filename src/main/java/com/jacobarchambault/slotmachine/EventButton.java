@@ -3,7 +3,6 @@ package com.jacobarchambault.slotmachine;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 class EventButton extends Button {
 
@@ -28,10 +27,7 @@ class EventButton extends Button {
 		this.betField = insertedTextField;
 		this.displayInfoLabel = displayInfoLabel;
 		this.ui = ui;
-
-		setOnAction(e -> {
-			play();
-		});
+		setOnAction(e -> play());
 	}
 
 	private void play() {
@@ -39,7 +35,7 @@ class EventButton extends Button {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = betField.determineWinnings(fromMatches);
-			slots.change(ints);
+			slots.updateUI(ints);
 			displayInfoLabel.displayMatchText(fromMatches);
 			ui.update(amountWon);
 		} catch (final NumberFormatException ex) {

@@ -1,30 +1,23 @@
 package com.jacobarchambault.slotmachine;
 
-import java.util.Random;
-
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 class Slots {
 
+	private final SlotImages slotImages;
 	private final Image[] images;
-	private final Random rand;
-	private final ImageView[] displays;
 
-	Slots(final Random random, final Image[] images, final ImageView[] slots) {
-		rand = random;
+	Slots(SlotImages slotImages, final Image[] images) {
+		this.slotImages = slotImages;
 		this.images = images;
-		this.displays = slots;
 	}
 
 	int[] spin() {
-		return rand.ints(0, images.length).limit(displays.length).toArray();
+		return slotImages.getRandomIndices(images);
 	}
 
-	void change(final int[] spinResults) {
-		for (var i = 0; i < displays.length; i++) {
-			displays[i].setImage(images[spinResults[i]]);
-		}
+	void updateUI(final int[] spinResults) {
+		slotImages.shuffle(spinResults, images);
 	}
 
 }
