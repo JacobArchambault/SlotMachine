@@ -44,8 +44,8 @@ class EventButton extends Button {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = betField.determineWinnings(fromMatches);
-			displayInfoLabel.displayMatchText(fromMatches);
 			slimgs.change(ints);
+			displayInfoLabel.displayMatchText(fromMatches);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 			totalWonOutputLabel.displayUpdate(amountWon);
 		} catch (final NumberFormatException ex) {
