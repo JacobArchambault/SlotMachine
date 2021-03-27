@@ -44,12 +44,16 @@ class EventButton extends Button {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = betField.determineWinnings(fromMatches);
-			slimgs.change(ints);
-			displayInfoLabel.displayMatchText(fromMatches);
-			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
-			totalWonOutputLabel.displayUpdate(amountWon);
+			changes(ints, fromMatches, amountWon);
 		} catch (final NumberFormatException ex) {
 			displayInfoLabel.setText("Insert an amount to play.");
 		}
+	}
+
+	private void changes(int[] ints, final int fromMatches, final double amountWon) {
+		slimgs.change(ints);
+		displayInfoLabel.displayMatchText(fromMatches);
+		wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
+		totalWonOutputLabel.displayUpdate(amountWon);
 	}
 }
