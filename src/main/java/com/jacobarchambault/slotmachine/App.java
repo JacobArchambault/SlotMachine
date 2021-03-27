@@ -31,7 +31,6 @@ public class App extends Application {
 	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
-
 	@Override
 	public void start(final Stage primaryStage) {
 		primaryStage
@@ -51,8 +50,7 @@ public class App extends Application {
 												new Slots(new Random(), images, slotImages),
 												insertedTextField,
 												displayInfoLabel,
-												wonThisSpinOutputLabel,
-												totalWonOutputLabel),
+												new UI(displayInfoLabel, wonThisSpinOutputLabel, totalWonOutputLabel)),
 										displayInfoLabel)));
 		primaryStage.show();
 	}
