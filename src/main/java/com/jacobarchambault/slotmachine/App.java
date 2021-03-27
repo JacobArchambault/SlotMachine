@@ -30,8 +30,6 @@ public class App extends Application {
 	Label wonThisSpinOutputLabel = new Label("$0.00");
 	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
-	Slots slots = new Slots(new Random(), images, slotImages);
-	UI ui = new UI(displayInfoLabel, wonThisSpinOutputLabel, totalWonOutputLabel);
 
 	@Override
 	public void start(final Stage primaryStage) {
@@ -47,7 +45,12 @@ public class App extends Application {
 												new Label("Amount Won This Spin: "),
 												wonThisSpinOutputLabel),
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
-										new EventButton("Spin", slots, insertedTextField, displayInfoLabel, ui),
+										new EventButton(
+												"Spin",
+												new Slots(new Random(), images, slotImages),
+												insertedTextField,
+												displayInfoLabel,
+												new UI(displayInfoLabel, wonThisSpinOutputLabel, totalWonOutputLabel)),
 										displayInfoLabel)));
 		primaryStage.show();
 	}
