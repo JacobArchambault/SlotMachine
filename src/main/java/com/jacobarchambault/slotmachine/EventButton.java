@@ -10,7 +10,6 @@ class EventButton extends Button {
 	Slots slots;
 	NumberInput betField;
 	DisplayLabel displayInfoLabel;
-	SlotImages slimgs;
 	Label wonThisSpinOutputLabel;
 	TotalWinningsLabel totalWonOutputLabel;
 
@@ -24,14 +23,12 @@ class EventButton extends Button {
 			Slots slots,
 			NumberInput insertedTextField,
 			DisplayLabel displayInfoLabel,
-			SlotImages slimgs,
 			Label wonThisSpinOutputLabel,
 			TotalWinningsLabel totalWonOutputLabel) {
 		super(string);
 		this.slots = slots;
 		this.betField = insertedTextField;
 		this.displayInfoLabel = displayInfoLabel;
-		this.slimgs = slimgs;
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
 		this.totalWonOutputLabel = totalWonOutputLabel;
 		setOnAction(e -> {
@@ -51,7 +48,7 @@ class EventButton extends Button {
 	}
 
 	private void changes(int[] ints, final int fromMatches, final double amountWon) {
-		slimgs.change(ints);
+		slots.change(ints);
 		displayInfoLabel.displayMatchText(fromMatches);
 		wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 		totalWonOutputLabel.displayUpdate(amountWon);

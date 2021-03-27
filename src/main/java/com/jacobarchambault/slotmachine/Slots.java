@@ -21,4 +21,10 @@ class Slots {
 		return rand.ints(0, images.length).limit(slots.length).toArray();
 	}
 
+	void change(final int[] spinResults) {
+		for (var i = 0; i < slots.length; i++) {
+			slots[i].setImage(images[spinResults[i]]);
+		}
+	}
+
 }

@@ -51,7 +51,6 @@ public class App extends Application {
 												new Slots(new Random(), images, slotImages),
 												insertedTextField,
 												displayInfoLabel,
-												new SlotImages(slotImages, images),
 												wonThisSpinOutputLabel,
 												totalWonOutputLabel),
 										displayInfoLabel)));
