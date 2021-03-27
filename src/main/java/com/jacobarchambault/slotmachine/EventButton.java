@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 class EventButton extends Button {
 
 	Slots slots;
-	NumberInput insertedTextField;
+	NumberInput betField;
 	DisplayLabel displayInfoLabel;
 	SlotImages slimgs;
 	Label wonThisSpinOutputLabel;
@@ -29,7 +29,7 @@ class EventButton extends Button {
 			TotalWinningsLabel totalWonOutputLabel) {
 		super(string);
 		this.slots = slots;
-		this.insertedTextField = insertedTextField;
+		this.betField = insertedTextField;
 		this.displayInfoLabel = displayInfoLabel;
 		this.slimgs = slimgs;
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
@@ -43,7 +43,7 @@ class EventButton extends Button {
 		try {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
-			final var amountWon = insertedTextField.determineWinnings(fromMatches);
+			final var amountWon = betField.determineWinnings(fromMatches);
 			displayInfoLabel.displayMatchText(fromMatches);
 			slimgs.change(ints);
 			wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
