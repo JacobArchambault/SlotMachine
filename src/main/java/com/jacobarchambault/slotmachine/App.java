@@ -38,14 +38,10 @@ public class App extends Application {
 				.setScene(
 						new Scene(
 								new MainVBox(
-										10,
 										new HBox(10, slotImages[0], slotImages[1], slotImages[2]),
-										new CenteredHBox(10, new Label("Amount Inserted: "), insertedTextField),
-										new CenteredHBox(
-												10,
-												new Label("Amount Won This Spin: "),
-												wonThisSpinOutputLabel),
-										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
+										new CenteredHBox(new Label("Amount Inserted: "), insertedTextField),
+										new CenteredHBox(new Label("Amount Won This Spin: "), wonThisSpinOutputLabel),
+										new CenteredHBox(new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton(
 												"Spin",
 												new Slots(new Random(), images, slotImages),

@@ -12,4 +12,8 @@ class MainVBox extends VBox {
 		setPadding(new Insets(10));
 	}
 
+	MainVBox(final Node... children) {
+		this(10, children);
+	}
+
 }

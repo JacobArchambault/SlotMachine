@@ -10,4 +10,8 @@ class CenteredHBox extends HBox {
 		super(spacing, children);
 		setAlignment(Pos.CENTER);
 	}
+
+	CenteredHBox(final Node... children) {
+		this(10, children);
+	}
 }
