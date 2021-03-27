@@ -28,7 +28,6 @@ public class App extends Application {
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
 	NumberInput insertedTextField = new NumberInput();
-	Slots slots = new Slots(new Random(), images, slotImages);
 	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 
 	Label wonThisSpinOutputLabel = new Label("$0.00");
@@ -49,7 +48,7 @@ public class App extends Application {
 										new CenteredHBox(10, new Label("Total Amount Won: "), totalWonOutputLabel),
 										new EventButton(
 												"Spin",
-												slots,
+												new Slots(new Random(), images, slotImages),
 												insertedTextField,
 												displayInfoLabel,
 												new SlotImages(slotImages, images),
