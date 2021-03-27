@@ -47,7 +47,7 @@ public class App extends Application {
 												new Slots(new SlotImages(new Random(), slotImages), images),
 												insertedTextField,
 												displayInfoLabel,
-												new UI(wonThisSpinOutputLabel, totalWonOutputLabel)),
+												new WinningsLabels(wonThisSpinOutputLabel, totalWonOutputLabel)),
 										displayInfoLabel)));
 		primaryStage.show();
 	}

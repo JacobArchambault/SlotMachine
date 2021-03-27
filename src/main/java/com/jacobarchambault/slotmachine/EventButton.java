@@ -9,7 +9,7 @@ class EventButton extends Button {
 	Slots slots;
 	NumberInput betField;
 	DisplayLabel displayInfoLabel;
-	UI ui;
+	WinningsLabels ui;
 
 	EventButton(final String text, final EventHandler<ActionEvent> event) {
 		super(text);
@@ -21,7 +21,7 @@ class EventButton extends Button {
 			Slots slots,
 			NumberInput insertedTextField,
 			DisplayLabel displayInfoLabel,
-			UI ui) {
+			WinningsLabels ui) {
 		super(string);
 		this.slots = slots;
 		this.betField = insertedTextField;

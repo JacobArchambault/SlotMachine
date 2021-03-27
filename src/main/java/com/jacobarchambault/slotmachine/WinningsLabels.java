@@ -2,12 +2,12 @@ package com.jacobarchambault.slotmachine;
 
 import javafx.scene.control.Label;
 
-class UI {
+class WinningsLabels {
 
 	Label wonThisSpinOutputLabel;
 	TotalWinningsLabel totalWonOutputLabel;
 
-	UI(Label wonThisSpinOutputLabel, TotalWinningsLabel totalWonOutputLabel) {
+	WinningsLabels(Label wonThisSpinOutputLabel, TotalWinningsLabel totalWonOutputLabel) {
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
 		this.totalWonOutputLabel = totalWonOutputLabel;
 	}
