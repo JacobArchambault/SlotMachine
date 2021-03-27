@@ -8,15 +8,13 @@ class UI {
 	Label wonThisSpinOutputLabel;
 	TotalWinningsLabel totalWonOutputLabel;
 
-	UI(
-			DisplayLabel displayInfoLabel,
-			Label wonThisSpinOutputLabel,
-			TotalWinningsLabel totalWonOutputLabel) {
+	UI(DisplayLabel displayInfoLabel, Label wonThisSpinOutputLabel, TotalWinningsLabel totalWonOutputLabel) {
 		this.displayInfoLabel = displayInfoLabel;
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
 		this.totalWonOutputLabel = totalWonOutputLabel;
 	}
-	void update(int[] ints, final int fromMatches, final double amountWon) {
+
+	void update(final int fromMatches, final double amountWon) {
 		displayInfoLabel.displayMatchText(fromMatches);
 		wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 		totalWonOutputLabel.displayUpdate(amountWon);
