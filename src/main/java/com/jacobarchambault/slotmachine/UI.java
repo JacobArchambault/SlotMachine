@@ -4,18 +4,15 @@ import javafx.scene.control.Label;
 
 class UI {
 
-	DisplayLabel displayInfoLabel;
 	Label wonThisSpinOutputLabel;
 	TotalWinningsLabel totalWonOutputLabel;
 
-	UI(DisplayLabel displayInfoLabel, Label wonThisSpinOutputLabel, TotalWinningsLabel totalWonOutputLabel) {
-		this.displayInfoLabel = displayInfoLabel;
+	UI(Label wonThisSpinOutputLabel, TotalWinningsLabel totalWonOutputLabel) {
 		this.wonThisSpinOutputLabel = wonThisSpinOutputLabel;
 		this.totalWonOutputLabel = totalWonOutputLabel;
 	}
 
-	void update(final int fromMatches, final double amountWon) {
-		displayInfoLabel.displayMatchText(fromMatches);
+	void update(final double amountWon) {
 		wonThisSpinOutputLabel.setText(String.format("$%,.2f", amountWon));
 		totalWonOutputLabel.displayUpdate(amountWon);
 	}

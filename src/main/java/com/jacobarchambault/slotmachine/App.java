@@ -25,9 +25,9 @@ public class App extends Application {
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
 			new ImageView(images[2]) };
 
-	//Input
+	// Input
 	NumberInput insertedTextField = new NumberInput();
-	//Outputs
+	// Outputs
 	Label wonThisSpinOutputLabel = new Label("$0.00");
 	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
@@ -51,7 +51,7 @@ public class App extends Application {
 												new Slots(new Random(), images, slotImages),
 												insertedTextField,
 												displayInfoLabel,
-												new UI(displayInfoLabel, wonThisSpinOutputLabel, totalWonOutputLabel)),
+												new UI(wonThisSpinOutputLabel, totalWonOutputLabel)),
 										displayInfoLabel)));
 		primaryStage.show();
 	}
