@@ -25,12 +25,12 @@ public class App extends Application {
 			new Image("file:Strawberry.png"), new Image("file:Watermelon.png") };
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
 			new ImageView(images[2]) };
-	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
 
 	NumberInput insertedTextField = new NumberInput();
-	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
-
 	Label wonThisSpinOutputLabel = new Label("$0.00");
+	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
+	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
+
 
 	@Override
 	public void start(final Stage primaryStage) {
