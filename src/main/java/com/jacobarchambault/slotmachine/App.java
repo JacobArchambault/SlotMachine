@@ -18,7 +18,6 @@ public class App extends Application {
 		Application.launch();
 	}
 
-	// To hold the slot values
 	private final Image[] images = new Image[] { new Image("file:Apple.png"), new Image("file:Banana.png"),
 			new Image("file:Cherries.png"), new Image("file:Grapes.png"), new Image("file:Lemon.png"),
 			new Image("file:Lime.png"), new Image("file:Orange.png"), new Image("file:Pear.png"),
@@ -26,7 +25,9 @@ public class App extends Application {
 	private final ImageView[] slotImages = new ImageView[] { new ImageView(images[2]), new ImageView(images[2]),
 			new ImageView(images[2]) };
 
+	//Input
 	NumberInput insertedTextField = new NumberInput();
+	//Outputs
 	Label wonThisSpinOutputLabel = new Label("$0.00");
 	TotalWinningsLabel totalWonOutputLabel = new TotalWinningsLabel("$0.00");
 	DisplayLabel displayInfoLabel = new DisplayLabel("Insert an amount to play.");
