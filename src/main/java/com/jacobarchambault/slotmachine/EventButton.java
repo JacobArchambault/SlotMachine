@@ -35,11 +35,15 @@ class EventButton extends Button {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = betField.determineWinnings(fromMatches);
-			slots.updateUI(ints);
-			displayInfoLabel.displayMatchText(fromMatches);
-			ui.update(amountWon);
+			updateUI(ints, fromMatches, amountWon);
 		} catch (final NumberFormatException ex) {
 			displayInfoLabel.setText("Insert an amount to play.");
 		}
+	}
+
+	private void updateUI(int[] ints, final int fromMatches, final double amountWon) {
+		slots.updateUI(ints);
+		displayInfoLabel.displayMatchText(fromMatches);
+		ui.update(amountWon);
 	}
 }
