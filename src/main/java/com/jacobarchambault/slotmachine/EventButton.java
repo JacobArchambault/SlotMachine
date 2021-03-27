@@ -39,6 +39,7 @@ class EventButton extends Button {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
 			final var amountWon = betField.determineWinnings(fromMatches);
+			slots.change(ints);
 			ui.update(ints, fromMatches, amountWon);
 		} catch (final NumberFormatException ex) {
 			displayInfoLabel.setText("Insert an amount to play.");
