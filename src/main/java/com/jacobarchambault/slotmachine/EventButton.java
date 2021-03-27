@@ -30,11 +30,11 @@ class EventButton extends Button {
 		this.ui = ui;
 
 		setOnAction(e -> {
-			extracted();
+			play();
 		});
 	}
 
-	private void extracted() {
+	private void play() {
 		try {
 			int[] ints = slots.spin();
 			final var fromMatches = Spin.numberOfMatches(ints);
